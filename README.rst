@@ -15,3 +15,16 @@ Just include it
     config.include('pyramid_admin2_cqlengine')
 
 before you include `pyramid_admin2`
+
+
+Change logs
+===========
+
+0.2
+
+  * Fix mirror bugs for python 2.7
+
+0.1
+---
+
+  * Initialize

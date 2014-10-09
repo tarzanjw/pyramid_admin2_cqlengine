@@ -86,7 +86,7 @@ class CQLEngineBrowseCriteria(admin_manager.BrowseCriteria):
 
     @reify
     def _previous_page_query(self):
-        pages = self.pages.copy()
+        pages = list(self.pages)
         """:type : list"""
         if not len(pages):
             return None
@@ -102,7 +102,7 @@ class CQLEngineBrowseCriteria(admin_manager.BrowseCriteria):
         if not len(objs) or len(objs) < self.items_per_page:
             return None
         obj = self.objects[-1]
-        pages = self.pages.copy()
+        pages = list(self.pages)
         page = {}
         for cname in itertools.chain(self.partition_columns_name,
                                      self.primary_key_columns_name):
@@ -145,7 +145,7 @@ class CQLEngineBrowseCriteria(admin_manager.BrowseCriteria):
 
     @reify
     def objects(self):
-        pages = self.pages.copy()
+        pages = list(self.pages)
         raw_query = self.query
         if not len(pages):
             return list(raw_query)
@@ -194,7 +194,7 @@ class CQLEngineManager(admin_manager.AdminManager):
     def get_value_type(self, val, adc=None):
         if isinstance(val, ModelQuerySet):
             return 'list'
-        return super().get_value_type(val)
+        return super(CQLEngineManager, self).get_value_type(val)
 
 
     def get_object(self, key):
@@ -202,6 +202,7 @@ class CQLEngineManager(admin_manager.AdminManager):
         try:
             return self.model.get(**id_filters)
         except (ValidationError, self.model.DoesNotExist):
+            raise
             return None
 
     def create(self, data):
