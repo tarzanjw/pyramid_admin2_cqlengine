@@ -20,7 +20,13 @@ before you include `pyramid_admin2`
 Change logs
 ===========
 
+0.3
+---
+
+  * Fix bug when can not get a model instance
+
 0.2
+---
 
   * Fix mirror bugs for python 2.7
 

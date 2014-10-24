@@ -11,7 +11,7 @@ requires = [
     ]
 
 setup(name='pyramid_admin2_cqlengine',
-      version='0.2',
+      version='0.3',
       description='pyramid_admin2_cqlengine',
       long_description=README,
       classifiers=[
