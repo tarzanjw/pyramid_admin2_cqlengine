@@ -202,7 +202,6 @@ class CQLEngineManager(admin_manager.AdminManager):
         try:
             return self.model.get(**id_filters)
         except (ValidationError, self.model.DoesNotExist):
-            raise
             return None
 
     def create(self, data):
